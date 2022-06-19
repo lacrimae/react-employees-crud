@@ -9,9 +9,9 @@ function App() {
 
     // todo: replace with real data
     const data = [
-        {name: 'John C.', salary: 800, isPromoted: false},
-        {name: 'Alex M.', salary: 10000, isPromoted: true},
-        {name: 'Carl W.', salary: 8515, isPromoted: true}
+        {id: 1, name: 'John C.', salary: 800, isPromoted: false},
+        {id: 2, name: 'Alex M.', salary: 10000, isPromoted: true},
+        {id: 3 , name: 'Carl W.', salary: 8515, isPromoted: true}
     ];
 
     return (
