@@ -24,9 +24,19 @@ class App extends Component {
         this.setState(({employees}) => {
             return {
                 employees: employees.filter(e => e.id !== id)
-            }
+            };
         });
         console.log(`Employee with id: ${id} has been deleted.`);
+    }
+
+    addEmployee = (name, salary) => {
+        const id = crypto.randomUUID();
+        this.setState(({employees}) => {
+            return {
+                employees: [...employees, {id: crypto.randomUUID(), name, salary, isPromoted: false}]
+            };
+        });
+        console.log(`Employee with id: ${id} has been added.`);
     }
 
     render() {
@@ -41,7 +51,7 @@ class App extends Component {
 
                 <EmployeesList data={this.state.employees}
                                onDelete={this.deleteEmployee}/>
-                <EmployeeAddForm/>
+                <EmployeeAddForm addEmployee={this.addEmployee}/>
 
             </div>
         );

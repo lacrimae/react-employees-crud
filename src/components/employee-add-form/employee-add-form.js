@@ -16,6 +16,12 @@ class EmployeeAddForm extends Component {
         });
     }
 
+    onSubmit = (e) => {
+        /**have to you preventDefault() to prevent a browser reload/refresh*/
+        e.preventDefault();
+        this.props.addEmployee(this.state.name, this.state.salary);
+    }
+
     render() {
         const {name, salary} = this.state;
 
@@ -23,7 +29,8 @@ class EmployeeAddForm extends Component {
             <div className="employee-add-form">
                 <h3>Add new employee</h3>
                 <form
-                    className="add-form d-flex">
+                    className="add-form d-flex"
+                    onSubmit={this.onSubmit}>
                     <input
                         type="text"
                         name={'name'}
