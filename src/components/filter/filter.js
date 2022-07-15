@@ -1,50 +1,32 @@
-import {Component} from "react";
 import './filter.css';
 
-class Filter extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            filter: ''
-        }
-    }
+const Filter = (props) => {
+    //todo: show a specific message if there are no employees
+    const buttons = [
+        {name: 'all', label: 'All employees'},
+        {name: 'promoted', label: 'Employees for promotion'},
+        {name: 'favorite', label: 'Favorite employees'},
+        {name: 'moreThan1000', label: 'Salary more than $1000'}
+    ];
 
-    onUpdateFilter = (filter) => {
-        this.setState({filter});
-        this.props.onUpdateFilter(filter);
-    }
-
-    render() {
+    const buttonComponents = buttons.map(({name, label}) => {
+        const {filter, onSelectFilter} = props;
+        const active = filter === name;
+        const clazz = active ? 'btn-light' : 'btn-outline-light';
         return (
-            <div className="btn-group">
-                <button
-                    className="btn btn-outline-light"
-                    type="button"
-                    onClick={() => this.onUpdateFilter("all")}
-                    defaultChecked={true}>
-                    All employees
-                </button>
-                <button
-                    className="btn btn-outline-light"
-                    type="button"
-                    onClick={() => this.onUpdateFilter("promoted")}>
-                    Employees for promotion
-                </button>
-                <button
-                    className="btn btn-outline-light"
-                    type="button"
-                    onClick={() => this.onUpdateFilter("favorite")}>
-                    Favorite employees
-                </button>
-                <button
-                    className="btn btn-outline-light"
-                    type="button"
-                    onClick={() => this.onUpdateFilter("moreThan1000")}>
-                    Salary more than $1000
-                </button>
-            </div>
+            <button type='button'
+                    className={`btn ${clazz}`}
+                    key={name}
+                    onClick={() => onSelectFilter(name)}>
+                {label}
+            </button>
         );
-    }
+    });
+    return (
+        <div className="btn-group">
+            {buttonComponents}
+        </div>
+    );
 }
 
 export default Filter;

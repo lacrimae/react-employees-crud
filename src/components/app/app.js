@@ -18,7 +18,7 @@ class App extends Component {
                 {id: crypto.randomUUID(), name: 'Carl W.', salary: 8515, isPromoted: true, isFavorite: false},
             ],
             term: '',
-            filter: ''
+            filter: 'all'
         }
     }
 
@@ -93,7 +93,7 @@ class App extends Component {
         this.setState({term});
     }
 
-    onUpdateFilter = (filter) => {
+    onSelectFilter = (filter) => {
         this.setState({filter});
     }
 
@@ -110,7 +110,8 @@ class App extends Component {
                     <SearchPanel
                         onUpdateSearch={this.onUpdateSearch}/>
                     <Filter
-                        onUpdateFilter={this.onUpdateFilter}/>
+                        filter={filter}
+                        onSelectFilter={this.onSelectFilter}/>
                 </div>
 
                 <EmployeesList data={visibleEmployees}
