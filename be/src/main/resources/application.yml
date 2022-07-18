@@ -4,3 +4,16 @@ spring:
     url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/employees_crud?currentSchema=public}
     username: ${DATABASE_USERNAME:postgres}
     password: ${DATABASE_PASSWORD:postgres}
+
+server:
+  url: http://localhost:8080
+  port: 8080
+
+base:
+  endpoint:
+    mapping: /api/v1
+
+springdoc:
+  pathsToMatch: /api/v1/**
+  api-docs:
+    enabled: true

@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.0.0
 
 info:
   title: Employee Service API
@@ -40,13 +40,13 @@ paths:
             application/json:
               schema:
                 $ref: 'dto.yaml#/components/schemas/EmployeeResponseDto'
-  /employee/{id}:
+  /employee/{employeeId}:
     put:
       tags: [ employee ]
       operationId: updateEmployee
       description: 'Update employee'
       parameters:
-        - $ref: '#/components/parameters/EmployeeIdParam'
+        - $ref: '#/components/parameters/employeeIdParam'
       requestBody:
         required: true
         content:
@@ -65,14 +65,14 @@ paths:
       operationId: deleteEmployee
       description: 'Delete employee'
       parameters:
-        - $ref: '#/components/parameters/EmployeeIdParam'
+        - $ref: '#/components/parameters/employeeIdParam'
       responses:
         '204':
           description: Deleted
 
 components:
   parameters:
-    EmployeeIdParam:
+    employeeIdParam:
       name: employeeId
       in: path
       description: 'Employee id'
