@@ -1,0 +1,19 @@
+openapi: 3.0.3
+
+components:
+  schemas:
+    EmployeeRequestDto:
+      type: object
+      properties:
+        name:
+          type: string
+          salary: number
+    EmployeeResponseDto:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        salary:
+          type: number

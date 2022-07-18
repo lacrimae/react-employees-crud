@@ -1,0 +1,78 @@
+openapi: 3.0.3
+
+info:
+  title: Employee Service API
+  description: API description.
+  version: 1.0.0
+
+paths:
+  /employee:
+    get:
+      tags: [ employee ]
+      operationId: getEmployee
+      description: 'Returns employees'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'dto.yaml/#/components/schemas/EmployeeResponseDto'
+    post:
+      tags: [ employee ]
+      operationId: createEmployee
+      description: 'Create employee'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'dto.yaml#/components/schemas/EmployeeRequestDto'
+      responses:
+        '200':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: 'dto.yaml#/components/schemas/EmployeeResponseDto'
+  /employee/{id}:
+    put:
+      tags: [ employee ]
+      operationId: updateEmployee
+      description: 'Update employee'
+      parameters:
+        - $ref: '#/components/parameters/EmployeeIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'dto.yaml#/components/schemas/EmployeeRequestDto'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: 'dto.yaml#/components/schemas/EmployeeResponseDto'
+    delete:
+      tags: [ employee ]
+      operationId: deleteEmployee
+      description: 'Delete employee'
+      parameters:
+        - $ref: '#/components/parameters/EmployeeIdParam'
+      responses:
+        '204':
+          description: Deleted
+
+components:
+  parameters:
+    EmployeeIdParam:
+      name: employeeId
+      in: path
+      description: 'Employee id'
+      required: true
+      schema:
+        type: string
