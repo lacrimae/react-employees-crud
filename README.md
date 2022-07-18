@@ -7,19 +7,16 @@
 - Flyway
 - Spring Boot
 
-In the project directory, you can run:
+In the project fe directory, you can run:
 
+### `npm install`
 ### `npm start`
 
 ## Backend starts:
 
 execute db migration:
 
-run `mvn flyway:migrate
--Dspring.datasource.url=jdbc:postgresql://localhost:5432/${DB_NAME}
--Dspring.datasource.username=${USERNAME}
--Dspring.datasource.password=${PASSWORD}
--Dspring.flyway.schemas=${SCHEMA}`
+### `mvn flyway:migrate -Dspring.datasource.url=jdbc:postgresql://localhost:5432/${DB_NAME} -Dspring.datasource.username=${USERNAME} -Dspring.datasource.password=${PASSWORD} -Dspring.flyway.schemas=${SCHEMA}`
     
 
 

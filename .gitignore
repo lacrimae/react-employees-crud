@@ -1,8 +1,20 @@
-/node_modules
+/fe/node_modules
 /.php
 .pnp.js
 
 /coverage
 
-/build
+be/build
 /.idea
+
+be/HELP.md
+be/target/
+be/!.mvn/wrapper/maven-wrapper.jar
+be/!**/src/main/**/target/
+be/!**/src/test/**/target/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
