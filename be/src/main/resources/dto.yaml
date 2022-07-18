@@ -7,7 +7,7 @@ components:
       properties:
         name:
           type: string
-          salary: number
+          salary: integer
     EmployeeResponseDto:
       type: object
       properties:
@@ -16,4 +16,4 @@ components:
         name:
           type: string
         salary:
-          type: number
+          type: integer
