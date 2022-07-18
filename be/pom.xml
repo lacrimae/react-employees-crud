@@ -95,8 +95,8 @@
                     </schemas>
                     <locations>
                         <location>filesystem:src/main/resources/db/migration</location>
+                        <ignoreMissingMigrations>true</ignoreMissingMigrations>
                     </locations>
-                    <ignoreMissingMigrations>true</ignoreMissingMigrations>
                 </configuration>
             </plugin>
         </plugins>
