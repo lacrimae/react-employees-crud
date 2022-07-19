@@ -12,7 +12,7 @@ paths:
   /employee:
     get:
       tags: [ employee ]
-      operationId: getEmployee
+      operationId: getEmployees
       description: 'Returns employees'
       responses:
         '200':

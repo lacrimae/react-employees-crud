@@ -7,13 +7,14 @@ components:
       properties:
         name:
           type: string
-          salary: integer
+        salary:
+          type: string
     EmployeeResponseDto:
       type: object
       properties:
         id:
-          type: integer
+          type: string
         name:
           type: string
         salary:
-          type: integer
+          type: string
