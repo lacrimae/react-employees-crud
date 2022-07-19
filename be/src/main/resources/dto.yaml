@@ -18,3 +18,7 @@ components:
           type: string
         salary:
           type: string
+        isPromoted:
+          type: boolean
+        isStarred:
+          type: boolean

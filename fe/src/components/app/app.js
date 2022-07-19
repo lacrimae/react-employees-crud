@@ -1,22 +1,17 @@
 import {Component} from "react";
-
 import './app.css';
 import Info from '../info/info';
 import SearchPanel from '../search-panel/search-panel';
 import Filter from '../filter/filter';
 import EmployeesList from "../employees-list/employees-list";
 import EmployeeAddForm from "../employee-add-form/employee-add-form";
+import EmployeeService from "../../service/EmployeeService";
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // todo: replace with real data
-            employees: [
-                {id: crypto.randomUUID(), name: 'John C.', salary: 800, isPromoted: false, isFavorite: true},
-                {id: crypto.randomUUID(), name: 'Alex M.', salary: 10000, isPromoted: true, isFavorite: false},
-                {id: crypto.randomUUID(), name: 'Carl W.', salary: 8515, isPromoted: true, isFavorite: false},
-            ],
+            employees: [],
             term: '',
             filter: 'all'
         }
@@ -32,6 +27,8 @@ class App extends Component {
     }
 
     addEmployee = (name, salary) => {
+        const employeeService = new EmployeeService();
+
         //todo: add error popup (non a message in console)
         function validateAddEmployee(name, salary) {
             //todo: add regex for salary (can't start with 0)
@@ -41,13 +38,17 @@ class App extends Component {
         }
 
         validateAddEmployee(name, salary);
-        const id = crypto.randomUUID();
-        this.setState(({employees}) => {
-            return {
-                employees: [...employees, {id: crypto.randomUUID(), name, salary, isPromoted: false, isFavorite: false}]
-            };
-        });
-        console.log(`Employee with id: ${id} has been added.`);
+        const employee = {name, salary};
+
+        employeeService.createEmployee(employee)
+            .then(savedEmployee => {
+                this.setState(({employees}) => {
+                    console.log(`Employee with id: ${savedEmployee.id} has been added.`);
+                    return {
+                        employees: [...employees, savedEmployee]
+                    };
+                })
+            });
     }
 
     onToggleChange = (id, prop) => {
@@ -98,12 +99,19 @@ class App extends Component {
     }
 
     render() {
+        const employeeService = new EmployeeService();
+        employeeService.getEmployees()
+            .then(employees => {
+                this.setState({employees});
+            });
+
         const {employees, term, filter} = this.state;
         let visibleEmployees = this.searchEmployees(employees, term);
         visibleEmployees = this.filterEmployees(visibleEmployees, filter);
 
         return (
             <div className="app">
+                //todo: add pages (5 employees per page), ability to change page
                 <Info employees={employees}/>
 
                 <div className="search-panel">
