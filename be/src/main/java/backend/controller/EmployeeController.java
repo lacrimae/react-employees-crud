@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.UUID;
 
 import backend.model.EmployeeRequestDto;
+import backend.model.EmployeeRequestUpdateDto;
 import backend.model.EmployeeResponseDto;
+import backend.model.EmployeeResponseUpdateDto;
 import backend.service.EmployeeService;
 import static backend.support.EmployeeConstraints.BASE_ENDPOINT_MAPPING;
 import lombok.RequiredArgsConstructor;
@@ -42,8 +44,7 @@ public class EmployeeController implements EmployeeApi {
     }
 
     @Override
-    public ResponseEntity<EmployeeResponseDto> updateEmployee(String employeeId, EmployeeRequestDto employeeRequestDto) {
-        //todo: implement
-        return null;
+    public ResponseEntity<EmployeeResponseUpdateDto> updateEmployee(String employeeId, EmployeeRequestUpdateDto dto) {
+        return ResponseEntity.ok(employeeService.update(UUID.fromString(employeeId), dto));
     }
 }

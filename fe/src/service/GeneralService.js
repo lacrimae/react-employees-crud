@@ -30,7 +30,20 @@ class GeneralService {
         if (!response.ok) {
             throw new Error(`Could not fetch ${url}, received ${response.status}`);
         }
-        // return await response.json();
+    }
+
+    putResource = async (url, data) => {
+        const response = await fetch(`${this._apiBase}${url}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        if (!response.ok) {
+            throw new Error(`Could not fetch ${url}, received ${response.status}`);
+        }
+        return await response.json();
     }
 }
 

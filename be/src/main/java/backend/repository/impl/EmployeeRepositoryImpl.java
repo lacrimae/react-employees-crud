@@ -1,6 +1,7 @@
 package backend.repository.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -50,5 +51,22 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         dsl.deleteFrom(EMPLOYEE)
                 .where(EMPLOYEE.ID.eq(employeeId))
                 .execute();
+    }
+
+    @Override
+    public Employee update(UUID employeeId, Employee employee) {
+        dsl.update(EMPLOYEE)
+                .set(EMPLOYEE.NAME, employee.getName())
+                .set(EMPLOYEE.SALARY, employee.getSalary())
+                .set(EMPLOYEE.IS_PROMOTED, employee.getIsPromoted())
+                .set(EMPLOYEE.IS_STARRED, employee.getIsStarred())
+                .where(EMPLOYEE.ID.eq(employeeId))
+                .execute();
+
+        return dsl.selectFrom(EMPLOYEE)
+                .where(EMPLOYEE.ID.eq(employeeId))
+                .fetchOptional()
+                .map(Employee::of)
+                .orElseThrow(() -> new IllegalArgumentException("Employee not found"));
     }
 }

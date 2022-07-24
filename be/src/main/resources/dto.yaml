@@ -9,7 +9,31 @@ components:
           type: string
         salary:
           type: string
+    EmployeeRequestUpdateDto:
+      type: object
+      properties:
+        name:
+          type: string
+        salary:
+          type: string
+        isPromoted:
+          type: boolean
+        isStarred:
+          type: boolean
     EmployeeResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        salary:
+          type: string
+        isPromoted:
+          type: boolean
+        isStarred:
+          type: boolean
+    EmployeeResponseUpdateDto:
       type: object
       properties:
         id:

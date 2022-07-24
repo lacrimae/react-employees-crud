@@ -52,14 +52,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'dto.yaml#/components/schemas/EmployeeRequestDto'
+              $ref: 'dto.yaml#/components/schemas/EmployeeRequestUpdateDto'
       responses:
         '200':
           description: Updated
           content:
             application/json:
               schema:
-                $ref: 'dto.yaml#/components/schemas/EmployeeResponseDto'
+                $ref: 'dto.yaml#/components/schemas/EmployeeResponseUpdateDto'
     delete:
       tags: [ employee ]
       operationId: deleteEmployee

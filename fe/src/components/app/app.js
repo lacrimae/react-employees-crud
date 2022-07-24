@@ -59,6 +59,19 @@ class App extends Component {
             });
     }
 
+    updateEmployee = (employee) => {
+        const employeeService = new EmployeeService();
+        employeeService.updateEmployee(employee)
+            .then(updatedEmployee => {
+                this.setState(({employees}) => {
+                    console.log(`Employee with id: ${updatedEmployee.id} has been updated.`);
+                    return {
+                        employees: employees.map(e => e.id === updatedEmployee.id ? updatedEmployee : e)
+                    };
+                })
+            });
+    }
+
     onToggleChange = (id, prop) => {
         this.setState(({employees}) => {
             return {
@@ -88,7 +101,7 @@ class App extends Component {
                     case 'promoted':
                         return employee.isPromoted;
                     case 'favorite':
-                        return employee.isFavorite;
+                        return employee.isStarred;
                     case 'moreThan1000':
                         return employee.salary > 1000;
                     default:
@@ -133,7 +146,8 @@ class App extends Component {
 
                 <EmployeesList data={visibleEmployees}
                                onDelete={this.deleteEmployee}
-                               onToggleChange={this.onToggleChange}/>
+                               onToggleChange={this.onToggleChange}
+                               updateEmployee={this.updateEmployee}/>
                 <EmployeeAddForm addEmployee={this.addEmployee}/>
 
             </div>

@@ -12,6 +12,11 @@ class EmployeeService extends GeneralService {
     deleteEmployee = (id) => {
         return this.deleteResource(`employee/${id}`);
     }
+
+    updateEmployee = (employee) => {
+        const {id, ...employeeProps} = employee;
+        return this.putResource(`employee/${id}`, employeeProps);
+    }
 }
 
 export default EmployeeService;
