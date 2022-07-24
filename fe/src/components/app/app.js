@@ -72,19 +72,6 @@ class App extends Component {
             });
     }
 
-    onToggleChange = (id, prop) => {
-        this.setState(({employees}) => {
-            return {
-                employees: employees.map(employee => {
-                    if (employee.id === id) {
-                        return {...employee, [prop]: !employee[prop]};
-                    }
-                    return employee;
-                })
-            };
-        });
-    }
-
     searchEmployees = (employees, term) => {
         if (term.length === 0) {
             return employees;

@@ -11,7 +11,7 @@
     line-height: 35px;
     font-size: 20px;
     cursor: pointer;
-    min-width: 550px;
+    min-width: 350px;
 }
 
 .list-group-item input {
@@ -61,4 +61,17 @@
 
 .list-group-item.promoted .btn-star {
     color: #aeaeae;
+}
+
+.updateButton {
+    /* This bit sets up the horizontal layout */
+    display:flex;
+    flex-direction:row;
+
+    /* This bit draws the box around it */
+    border:1px solid grey;
+
+    /* I've used padding so you can see the edges of the elements. */
+    padding:2px;
+    background-color: #7bd07f; /* Green */
 }

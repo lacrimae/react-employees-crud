@@ -10,7 +10,6 @@ const EmployeesList = ({data, onDelete, onToggleChange, updateEmployee}) => {
             key={id}
             {...employee}
             onDelete={() => onDelete(id)}
-            onToggleChange={(e) => onToggleChange(id, e.currentTarget.getAttribute('data-toggle'))}
             updateEmployee={updateEmployee}
         />
     });
