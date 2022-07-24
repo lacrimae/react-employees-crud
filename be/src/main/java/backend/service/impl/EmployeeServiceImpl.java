@@ -1,6 +1,7 @@
 package backend.service.impl;
 
 import java.util.List;
+import java.util.UUID;
 
 import backend.model.Employee;
 import backend.model.EmployeeRequestDto;
@@ -32,5 +33,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = employeeRequestMapper.toEntity(employeeRequestDto);
         employeeRepository.save(employee);
         return employeeResponseMapper.toDto(employee);
+    }
+
+    @Override
+    public void delete(UUID employeeId) {
+        employeeRepository.delete(employeeId);
     }
 }

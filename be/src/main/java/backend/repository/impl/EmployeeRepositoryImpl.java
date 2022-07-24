@@ -44,4 +44,11 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
         return Employee.of(employeeRecord);
     }
+
+    @Override
+    public void delete(UUID employeeId) {
+        dsl.deleteFrom(EMPLOYEE)
+                .where(EMPLOYEE.ID.eq(employeeId))
+                .execute();
+    }
 }

@@ -17,13 +17,21 @@ class App extends Component {
         }
     }
 
-    deleteEmployee = (id) => {
-        this.setState(({employees}) => {
-            return {
-                employees: employees.filter(e => e.id !== id)
-            };
-        });
-        console.log(`Employee with id: ${id} has been deleted.`);
+    componentDidMount() {
+        this.getEmployees();
+    }
+
+    employeeService = new EmployeeService();
+
+    deleteEmployee = async (id) => {
+        const employeeService = new EmployeeService();
+        employeeService.deleteEmployee(id)
+            .then(() => {
+                    const employees = this.state.employees.filter(employee => employee.id !== id);
+                    this.setState({employees});
+                    console.log(`Employee with id: ${id} has been deleted.`);
+                }
+            )
     }
 
     addEmployee = (name, salary) => {
@@ -98,20 +106,21 @@ class App extends Component {
         this.setState({filter});
     }
 
-    render() {
-        const employeeService = new EmployeeService();
-        employeeService.getEmployees()
-            .then(employees => {
-                this.setState({employees});
+    getEmployees = () => {
+        this.employeeService.getEmployees()
+            .then(data => {
+                this.setState({employees: data});
             });
+    }
 
+    render() {
         const {employees, term, filter} = this.state;
         let visibleEmployees = this.searchEmployees(employees, term);
         visibleEmployees = this.filterEmployees(visibleEmployees, filter);
 
         return (
             <div className="app">
-                //todo: add pages (5 employees per page), ability to change page
+                {/*todo: add pages (5 employees per page), ability to change page*/}
                 <Info employees={employees}/>
 
                 <div className="search-panel">
